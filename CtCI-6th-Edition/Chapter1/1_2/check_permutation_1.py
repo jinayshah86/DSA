@@ -9,11 +9,11 @@ import unittest
 from collections import Counter, defaultdict
 
 
-def check_permutation_counter(str1, str2):
+def check_permutation_counter(str1: list, str2: list):
     return Counter(str1) == Counter(str2)
 
 
-def check_permutation_default_dict(str1, str2):
+def check_permutation_default_dict(str1: list, str2: list):
     character_map_1 = defaultdict(int)
     character_map_2 = defaultdict(int)
     for character in str1:
@@ -23,7 +23,7 @@ def check_permutation_default_dict(str1, str2):
     return character_map_1 == character_map_2
 
 
-def check_permutation_dict(str1, str2):
+def check_permutation_dict(str1: list, str2: list):
     character_map_1 = {}
     character_map_2 = {}
     for character in str1:

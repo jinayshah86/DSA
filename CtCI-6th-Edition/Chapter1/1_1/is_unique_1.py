@@ -6,7 +6,7 @@
 import unittest
 
 
-def is_unique(string):
+def is_unique(string: str):
     character_map = {}
     for character in string:
         if character in character_map:

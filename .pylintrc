@@ -1,0 +1,7 @@
+[DSA]
+disable=R,
+ C,
+ E1101,
+ W0703,
+ F0010, # __init__ file
+ fixme

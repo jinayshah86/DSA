@@ -14,7 +14,7 @@ def rotate_90_matrix(matrix):
         assert len(row) == size
     if size == 1:  # Identity case
         return
-    mid = max(1, (size - 1) // 2)
+    mid = max(1, size // 2)
     for i in range(mid):
         for j in range(i, size - 1 - i):
             (
@@ -56,28 +56,28 @@ class TestMatrixRotation(unittest.TestCase):
         rotate_90_matrix(original_matrix)
         self.assertEqual(expected_matrix, original_matrix)
 
-    def test_9x9(self):
-        original_matrix = create_seq_nxn_matrix(9)
-        expected_matrix = [
-            [73, 64, 55, 46, 37, 28, 19, 10, 1],
-            [74, 65, 56, 47, 38, 29, 20, 11, 2],
-            [75, 66, 57, 48, 39, 30, 21, 12, 3],
-            [76, 67, 58, 49, 40, 31, 22, 13, 4],
-            [77, 68, 59, 50, 41, 32, 23, 14, 5],
-            [78, 69, 60, 51, 42, 33, 24, 15, 6],
-            [79, 70, 61, 52, 43, 34, 25, 16, 7],
-            [80, 71, 62, 53, 44, 35, 26, 17, 8],
-            [81, 72, 63, 54, 45, 36, 27, 18, 9],
-        ]
-        rotate_90_matrix(original_matrix)
-        self.assertEqual(expected_matrix, original_matrix)
-
     def test_2x3(self):
         original_matrix = [
             [1, 2, 3],
             [4, 5, 6],
         ]
         self.assertRaises(AssertionError, rotate_90_matrix, original_matrix)
+
+    def test_4x4(self):
+        original_matrix = [
+            [5, 1, 9, 11],
+            [2, 4, 8, 10],
+            [13, 3, 6, 7],
+            [15, 14, 12, 16],
+        ]
+        expected_matrix = [
+            [15, 13, 2, 5],
+            [14, 3, 4, 1],
+            [12, 6, 8, 9],
+            [16, 7, 10, 11],
+        ]
+        rotate_90_matrix(original_matrix)
+        self.assertEqual(expected_matrix, original_matrix)
 
 
 if __name__ == "__main__":

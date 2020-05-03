@@ -1,5 +1,5 @@
 # whitelist files for formatting and linting
-WHITELIST_FILES = CtCI-6th-Edition/**
+WHITELIST_FILES = CtCI-6th-Edition/
 
 # formats the project
 format:

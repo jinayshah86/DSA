@@ -2,21 +2,32 @@
 # image is 4 bytes, writes a method ot rotate the image by 90 degrees. Can
 # you do this in place?
 # Time complexity: O(N^2); N is the size of the NxN matrix.
-# Space complexity: O(N^2); N is the size of the NxN matrix.
+# Space complexity: O(1)
 
 import unittest
 
 
 def rotate_90_matrix(matrix):
     size = len(matrix)
+    # validation in O(N)
+    for row in matrix:
+        assert len(row) == size
     if size == 1:  # Identity case
         return
-    rotated_matrix = [[None for _ in range(size)] for _ in range(size)]
-    for i, row in enumerate(matrix):
-        assert len(row) == size  # Validation
-        for j, cell in enumerate(row):
-            rotated_matrix[i][j] = matrix[size - 1 - j][i]
-    return rotated_matrix
+    mid = max(1, (size - 1) // 2)
+    for i in range(mid):
+        for j in range(i, size - 1 - i):
+            (
+                matrix[i][j],
+                matrix[j][size - 1 - i],
+                matrix[size - 1 - i][size - 1 - j],
+                matrix[size - 1 - j][i],
+            ) = (
+                matrix[size - 1 - j][i],
+                matrix[i][j],
+                matrix[j][size - 1 - i],
+                matrix[size - 1 - i][size - 1 - j],
+            )
 
 
 def create_seq_nxn_matrix(n):
@@ -30,7 +41,8 @@ class TestMatrixRotation(unittest.TestCase):
             [3, 1],
             [4, 2],
         ]
-        self.assertEqual(expected_matrix, rotate_90_matrix(original_matrix))
+        rotate_90_matrix(original_matrix)
+        self.assertEqual(expected_matrix, original_matrix)
 
     def test_5x5(self):
         original_matrix = create_seq_nxn_matrix(5)
@@ -41,7 +53,8 @@ class TestMatrixRotation(unittest.TestCase):
             [24, 19, 14, 9, 4],
             [25, 20, 15, 10, 5],
         ]
-        self.assertEqual(expected_matrix, rotate_90_matrix(original_matrix))
+        rotate_90_matrix(original_matrix)
+        self.assertEqual(expected_matrix, original_matrix)
 
     def test_9x9(self):
         original_matrix = create_seq_nxn_matrix(9)
@@ -56,7 +69,8 @@ class TestMatrixRotation(unittest.TestCase):
             [80, 71, 62, 53, 44, 35, 26, 17, 8],
             [81, 72, 63, 54, 45, 36, 27, 18, 9],
         ]
-        self.assertEqual(expected_matrix, rotate_90_matrix(original_matrix))
+        rotate_90_matrix(original_matrix)
+        self.assertEqual(expected_matrix, original_matrix)
 
     def test_2x3(self):
         original_matrix = [

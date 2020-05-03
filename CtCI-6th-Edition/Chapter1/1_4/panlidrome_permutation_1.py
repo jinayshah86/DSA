@@ -5,36 +5,40 @@
 # Time complexity: O(N); N is the length of the string.
 # Space complexity: O(N); N is the length of the string.
 
-# Assumptions A1: Palindrome to checked only for alpha numeric characters. Remove
-# wihte spaces, puntuations or any other special characters.
-
+import string as pystring
 import unittest
 
+alpha_numeric = pystring.ascii_letters + pystring.digits
 
-def check_palindrome_permutation(string: str):
+
+def check_palindrome_permutation(
+    string: str,
+    case_insensitive: bool = True,
+    allowed_characters: str = alpha_numeric,
+):
     # One can also use collections.Counter or collections.defaultdict(int) as
     # used in CtCI-6th-Edition/Chapter1/1_2/check_permutation.py for
     # simplicity.
     character_map = {}
 
     for character in string:
-        if not character.isalnum():  # Assumption A1
+        # Skip not allowed characters if allowed_characters is non-empty
+        if allowed_characters and character not in allowed_characters:
             continue
-        # while checking for palindrom case of the character won't matter as
-        # 'a' is considered equivalent to 'A'
-        character = character.lower()
+        if case_insensitive:
+            character = character.lower()
         if character in character_map:
             character_map[character] += 1
         else:
             character_map[character] = 1
 
-    odd_flag = True  # to check if there's at most on odd only
+    # check if there's at most one odd count character only
+    odd_flag = True
     for val in character_map.values():
-        if val % 2 != 0:
-            if odd_flag:
-                odd_flag = False
-            else:
+        if val & 1:  # check if odd
+            if not odd_flag:  # another odd count character found
                 return False
+            odd_flag = False  # mark one odd count character found
     return True
 
 

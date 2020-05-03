@@ -17,29 +17,19 @@ def string_compression(string: str) -> str:
     if not string.isalpha():
         raise ValueError
 
-    compressed_string = []
-    prev_char = string[0]
-    prev_char_count = 1
-    for character in string[1:]:
-        if character == prev_char:
-            prev_char_count += 1
-        else:
-            compressed_string.append(prev_char)
-            compressed_string.append(str(prev_char_count))
-            prev_char = character
-            prev_char_count = 1
-
-    # Append the trailing similar character(s)
-    compressed_string.append(prev_char)
-    compressed_string.append(str(prev_char_count))
+    compressed_str = []
+    char_count = 0
+    for index, character in enumerate(string):
+        char_count += 1
+        if (index + 1) >= len(string) or character != string[index + 1]:
+            compressed_str.append(character)
+            compressed_str.append(str(char_count))
+            char_count = 0
 
     # Convert list to string
-    compressed_string = "".join(compressed_string)
+    compressed_str = "".join(compressed_str)
 
-    if len(compressed_string) < len(string):
-        return compressed_string
-    else:
-        return string
+    return compressed_str if len(compressed_str) < len(string) else string
 
 
 class TestStringCompression(unittest.TestCase):

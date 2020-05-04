@@ -8,25 +8,20 @@ import unittest
 
 
 def rotate_90_matrix(matrix):
-    size = len(matrix)
-    # validation in O(N)
-    for row in matrix:
-        assert len(row) == size
-    if size == 1:  # Identity case
-        return
-    mid = max(1, size // 2)
-    for i in range(mid):
-        for j in range(i, size - 1 - i):
-            (
+    n = len(matrix)
+    for i in range(n // 2):
+        for j in range(n - n // 2):
+            matrix[i][j], matrix[-(j + 1)][i] = (
+                matrix[-(j + 1)][i],
                 matrix[i][j],
-                matrix[j][size - 1 - i],
-                matrix[size - 1 - i][size - 1 - j],
-                matrix[size - 1 - j][i],
-            ) = (
-                matrix[size - 1 - j][i],
-                matrix[i][j],
-                matrix[j][size - 1 - i],
-                matrix[size - 1 - i][size - 1 - j],
+            )
+            matrix[-(j + 1)][i], matrix[-(i + 1)][-(j + 1)] = (
+                matrix[-(i + 1)][-(j + 1)],
+                matrix[-(j + 1)][i],
+            )
+            matrix[-(i + 1)][-(j + 1)], matrix[j][-(i + 1)] = (
+                matrix[j][-(i + 1)],
+                matrix[-(i + 1)][-(j + 1)],
             )
 
 
@@ -56,25 +51,13 @@ class TestMatrixRotation(unittest.TestCase):
         rotate_90_matrix(original_matrix)
         self.assertEqual(expected_matrix, original_matrix)
 
-    def test_2x3(self):
-        original_matrix = [
-            [1, 2, 3],
-            [4, 5, 6],
-        ]
-        self.assertRaises(AssertionError, rotate_90_matrix, original_matrix)
-
     def test_4x4(self):
-        original_matrix = [
-            [5, 1, 9, 11],
-            [2, 4, 8, 10],
-            [13, 3, 6, 7],
-            [15, 14, 12, 16],
-        ]
+        original_matrix = create_seq_nxn_matrix(4)
         expected_matrix = [
-            [15, 13, 2, 5],
-            [14, 3, 4, 1],
-            [12, 6, 8, 9],
-            [16, 7, 10, 11],
+            [13, 9, 5, 1],
+            [14, 10, 6, 2],
+            [15, 11, 7, 3],
+            [16, 12, 8, 4],
         ]
         rotate_90_matrix(original_matrix)
         self.assertEqual(expected_matrix, original_matrix)

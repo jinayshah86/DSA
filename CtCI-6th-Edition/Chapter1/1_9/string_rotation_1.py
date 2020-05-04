@@ -11,9 +11,7 @@ import unittest
 
 
 def is_rotated_string(s1: str, s2: str) -> bool:
-    if len(s1) != len(s2):
-        return False
-    return s2 in s1 + s1
+    return len(s1) == len(s2) and s2 in s1 + s1
 
 
 class TestStringRotation(unittest.TestCase):

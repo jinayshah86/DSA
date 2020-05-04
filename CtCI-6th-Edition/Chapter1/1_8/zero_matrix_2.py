@@ -6,54 +6,22 @@
 import unittest
 
 
-def nullfiy_row(matrix, row_index):
-    for col_index in range(len(matrix[row_index])):
-        matrix[row_index][col_index] = 0
-
-
-def nullfiy_col(matrix, col_index):
-    for row in matrix:
-        row[col_index] = 0
-
-
 def zero_matrix(matrix):
-    first_row_zero = False
     first_col_zero = False
 
-    # Check for zero in first row
-    for cell in matrix[0]:
-        if cell == 0:
-            first_row_zero = True
-            break
-
-    # Check for zero in first column
-    for row in matrix:
-        if row[0] == 0:
-            first_col_zero = True
-            break
-
     # Mark row and column headers as 0 for cell with 0
-    for i in range(1, len(matrix)):
+    for i in range(len(matrix)):
+        first_col_zero = matrix[i][0] == 0 or first_col_zero
         for j in range(1, len(matrix[i])):
             if matrix[i][j] == 0:
                 matrix[i][0] = 0
                 matrix[0][j] = 0
 
-    # Nullify columns based on values of first row
-    for col_index in range(1, len(matrix[0])):
-        if matrix[0][col_index] == 0:
-            nullfiy_col(matrix, col_index)
-
-    # Nullify rows based on values of first column
-    for row_index in range(1, len(matrix)):
-        if matrix[row_index][0] == 0:
-            nullfiy_row(matrix, row_index)
-
-    # Nullify first row and column as necessary
-    if first_row_zero:
-        nullfiy_row(matrix, 0)
-    if first_col_zero:
-        nullfiy_col(matrix, 0)
+    for i in range(len(matrix) - 1, -1, -1):
+        for j in range(len(matrix[i]) - 1, 0, -1):
+            if matrix[i][0] == 0 or matrix[0][j] == 0:
+                matrix[i][j] = 0
+        matrix[i][0] = 0 if first_col_zero else matrix[i][0]
 
 
 class TestZeroMatrix(unittest.TestCase):

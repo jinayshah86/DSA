@@ -8,15 +8,7 @@ import unittest
 
 
 def rotate_90_matrix(matrix):
-    size = len(matrix)
-    if size == 1:  # Identity case
-        return
-    rotated_matrix = [[None for _ in range(size)] for _ in range(size)]
-    for i, row in enumerate(matrix):
-        assert len(row) == size  # Validation
-        for j, cell in enumerate(row):
-            rotated_matrix[i][j] = matrix[size - 1 - j][i]
-    return rotated_matrix
+    return list(map(list, zip(*matrix[::-1])))
 
 
 def create_seq_nxn_matrix(n):
@@ -43,27 +35,15 @@ class TestMatrixRotation(unittest.TestCase):
         ]
         self.assertEqual(expected_matrix, rotate_90_matrix(original_matrix))
 
-    def test_9x9(self):
-        original_matrix = create_seq_nxn_matrix(9)
+    def test_4x4(self):
+        original_matrix = create_seq_nxn_matrix(4)
         expected_matrix = [
-            [73, 64, 55, 46, 37, 28, 19, 10, 1],
-            [74, 65, 56, 47, 38, 29, 20, 11, 2],
-            [75, 66, 57, 48, 39, 30, 21, 12, 3],
-            [76, 67, 58, 49, 40, 31, 22, 13, 4],
-            [77, 68, 59, 50, 41, 32, 23, 14, 5],
-            [78, 69, 60, 51, 42, 33, 24, 15, 6],
-            [79, 70, 61, 52, 43, 34, 25, 16, 7],
-            [80, 71, 62, 53, 44, 35, 26, 17, 8],
-            [81, 72, 63, 54, 45, 36, 27, 18, 9],
+            [13, 9, 5, 1],
+            [14, 10, 6, 2],
+            [15, 11, 7, 3],
+            [16, 12, 8, 4],
         ]
         self.assertEqual(expected_matrix, rotate_90_matrix(original_matrix))
-
-    def test_2x3(self):
-        original_matrix = [
-            [1, 2, 3],
-            [4, 5, 6],
-        ]
-        self.assertRaises(AssertionError, rotate_90_matrix, original_matrix)
 
 
 if __name__ == "__main__":

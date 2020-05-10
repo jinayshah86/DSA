@@ -56,14 +56,11 @@ class LinkedList:
     def detect_loop(self):
         slow_pointer = self.head
         fast_pointer = self.head
-        move_slow_pointer = False
-        while fast_pointer:
-            fast_pointer = fast_pointer.next
-            if move_slow_pointer:
-                slow_pointer = slow_pointer.next
-                if slow_pointer is fast_pointer:
-                    break
-            move_slow_pointer = not move_slow_pointer
+        while fast_pointer and fast_pointer.next:
+            fast_pointer = fast_pointer.next.next
+            slow_pointer = slow_pointer.next
+            if slow_pointer is fast_pointer:
+                break
         else:
             return None
         slow_pointer = self.head

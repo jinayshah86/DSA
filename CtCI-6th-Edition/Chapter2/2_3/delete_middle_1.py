@@ -51,14 +51,10 @@ class LinkedList:
         slow_pointer = self.head
         fast_pointer = self.head
         # Move fast_pointer till end of the linked_list
-        move_slow_pointer = False
-        while fast_pointer:
-            fast_pointer = fast_pointer.next
-            if move_slow_pointer and slow_pointer.next:
-                previous_pointer = slow_pointer
-                slow_pointer = slow_pointer.next
-            move_slow_pointer = not move_slow_pointer
-
+        while fast_pointer and fast_pointer.next:
+            fast_pointer = fast_pointer.next.next
+            previous_pointer = slow_pointer
+            slow_pointer = slow_pointer.next
         if previous_pointer is not None:
             previous_pointer.next = slow_pointer.next
         else:

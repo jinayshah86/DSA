@@ -91,7 +91,7 @@ class TestPartition(unittest.TestCase):
         self.partition_test(ll, partition_value)
 
     def test_pass_2(self):
-        ll = LinkedList.create_from_list([1, 5, 3, 6, 4, 2])
+        ll = LinkedList.create_from_list([5, 3, 6, 4, 2, 1])
         partition_value = 4
         self.partition_test(ll, partition_value)
 

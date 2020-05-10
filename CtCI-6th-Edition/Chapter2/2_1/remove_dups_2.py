@@ -49,7 +49,6 @@ class LinkedList:
                 current = current.next
 
 
-
 class TestRemoveDuplicates(unittest.TestCase):
     def test_dups_1(self):
         lt = list(map(abs, range(-5, 5)))
@@ -75,5 +74,5 @@ class TestRemoveDuplicates(unittest.TestCase):
         self.assertEqual([], list(ll.get_list()))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

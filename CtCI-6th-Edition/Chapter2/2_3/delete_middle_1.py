@@ -104,5 +104,5 @@ class TestDeleteMiddle(unittest.TestCase):
         self.assertEqual([1, 2, 3, 5, 6], list(ll.get_list()))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -75,5 +75,5 @@ class TestKthLast(unittest.TestCase):
         self.assertEqual(1, ll.get_from_last(4))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

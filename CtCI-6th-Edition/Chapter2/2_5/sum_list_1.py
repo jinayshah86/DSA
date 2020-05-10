@@ -101,5 +101,5 @@ class TestSum(unittest.TestCase):
         self.assertEqual([2, 0, 1], list(ll3.get_list()))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

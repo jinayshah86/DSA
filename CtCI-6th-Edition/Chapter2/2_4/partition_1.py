@@ -101,5 +101,5 @@ class TestPartition(unittest.TestCase):
         self.partition_test(ll, partition_value)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

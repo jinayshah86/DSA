@@ -3,8 +3,8 @@
 # Time complexity: O(N); N is the length of the linked list
 # Space complexity: O(N); N is the length of the linked list
 
-from dataclasses import dataclass, field
 import unittest
+from dataclasses import dataclass, field
 
 
 @dataclass
@@ -95,5 +95,5 @@ class TestPalindrome(unittest.TestCase):
         self.assertFalse(ll.check_palindrome())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

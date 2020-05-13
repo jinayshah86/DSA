@@ -95,8 +95,9 @@ class TestPartition(unittest.TestCase):
         ll = LinkedList.create_from_list([3, 5, 8, 5, 10, 2, 1])
         partition_value = 5
         partitioned_ll = ll.partition(partition_value)
-        self.assertEqual([3, 2, 1, 5, 8, 5, 10],
-                         list(partitioned_ll.get_list()))
+        self.assertEqual(
+            [3, 2, 1, 5, 8, 5, 10], list(partitioned_ll.get_list())
+        )
 
 
 if __name__ == "__main__":

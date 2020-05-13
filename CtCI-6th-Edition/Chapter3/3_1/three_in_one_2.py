@@ -31,7 +31,10 @@ class KStacks:
         self.check_stack(sn)
         self.stack[self.free] = elem
         self.next_p[self.free], self.free, self.top[sn] = (
-            self.top[sn], self.next_p[self.free], self.free)
+            self.top[sn],
+            self.next_p[self.free],
+            self.free,
+        )
 
     def pop(self, sn):
         if self.is_empty(sn):
@@ -100,5 +103,5 @@ class TestKStacks(unittest.TestCase):
             st.push(6, 2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
